@@ -1,0 +1,78 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Githup Project\\BTL-Web-Pro\\BTL LTW PRO\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9DEC53E2-1342-47FD-9F9C-C47913A153C1}|BTL LTW PRO\\BTL LTW PRO.csproj|e:\\githup project\\btl-web-pro\\btl ltw pro\\btl ltw pro\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9DEC53E2-1342-47FD-9F9C-C47913A153C1}|BTL LTW PRO\\BTL LTW PRO.csproj|solutionrelative:btl ltw pro\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DEC53E2-1342-47FD-9F9C-C47913A153C1}|BTL LTW PRO\\BTL LTW PRO.csproj|e:\\githup project\\btl-web-pro\\btl ltw pro\\btl ltw pro\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9DEC53E2-1342-47FD-9F9C-C47913A153C1}|BTL LTW PRO\\BTL LTW PRO.csproj|solutionrelative:btl ltw pro\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\Githup Project\\BTL-Web-Pro\\BTL LTW PRO\\BTL LTW PRO\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "BTL LTW PRO\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "E:\\Githup Project\\BTL-Web-Pro\\BTL LTW PRO\\BTL LTW PRO\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "BTL LTW PRO\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-10T02:50:55.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\Githup Project\\BTL-Web-Pro\\BTL LTW PRO\\BTL LTW PRO\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "BTL LTW PRO\\Views\\Home\\Index.cshtml",
+              "ToolTip": "E:\\Githup Project\\BTL-Web-Pro\\BTL LTW PRO\\BTL LTW PRO\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "BTL LTW PRO\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAowDgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-10T02:36:27.702Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
