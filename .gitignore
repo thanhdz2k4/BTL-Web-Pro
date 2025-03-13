@@ -1,0 +1,36 @@
+#####################################
+# Lưu ý: File này nên đặt ở thư mục gốc repo
+# cùng cấp với file .sln
+#####################################
+
+# Hệ điều hành
+Thumbs.db
+*.DS_Store
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.userprefs
+*.sln.docstates
+
+# Thư mục build
+bin/
+obj/
+
+# Thư mục publish (nếu có)
+out/
+publish/
+
+# Rider / Resharper (nếu dùng)
+.idea/
+*.sln.iml
+_ReSharper*/
+*.DotSettings.user
+
+# Logs
+*.log
+
+
+
