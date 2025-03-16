@@ -17,6 +17,7 @@ Thumbs.db
 
 # Thư mục build
 bin/
+**/bin/
 obj/
 
 # Thư mục publish (nếu có)
@@ -34,3 +35,5 @@ _ReSharper*/
 
 
 
+config.bat
+node_modules
