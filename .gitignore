@@ -17,6 +17,7 @@ Thumbs.db
 
 # Thư mục build
 bin/
+**/bin/
 obj/
 
 # Thư mục publish (nếu có)
