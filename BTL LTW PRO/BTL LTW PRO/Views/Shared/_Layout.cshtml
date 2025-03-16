@@ -3,45 +3,88 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BTL_LTW_PRO</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BTL_LTW_PRO.styles.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - Live Classes</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/fontawesome-free-6.7.2-web/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    <!-- Menu Icon (cho mobile) -->
+    <i class="fas fa-bars menu-icon" onclick="toggleSidebar()"></i>
+
+    <!-- Header -->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <!-- Sử dụng collapse nếu cần responsive toggle -->
-                <div class="collapse navbar-collapse w-100">
-                    <ul class="navbar-nav w-100">
-                        <li class="nav-item bg-primary text-white w-100 d-flex justify-content-between align-items-center p-2">
-                            <h3 class="m-0">Hii, Devendra</h3>
-                            <div>
-                                <span class="me-3">🔔</span>
-                                <span>👤</span>
-                            </div>
-                        </li>
-                    </ul>
+        <h4 class="mb-0">TIPS-G</h4>
+        <div class="d-flex align-items-center">
+            <h5 class="me-3 mb-0">Hii, Devendra</h5>
+            <i class="fas fa-bell me-3"></i>
+            <div class="dropdown" id="userDropdown">
+                <!-- Icon user -->
+                <div class="icon-user">
+                    <i class="fas fa-user"></i>
+                </div>
+                <!-- Menu con -->
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a class="dropdown-item" href="#"><i class="fas fa-circle-user"></i> My Profile</a>
+                    <a class="dropdown-item" href="#"><i class="fas fa-clock-rotate-left"></i> Class History</a>
+                    <hr class="dropdown-divider">
+                    <a class="dropdown-item text-danger" href="#"><i class="fas fa-right-from-bracket"></i> Log Out</a>
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav class="sidebar p-3" id="sidebar">
+            <div class="nav-content">
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active text-dark"><i class="fas fa-video"></i> Live Classes</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-file-alt"></i> Exams</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-tasks"></i> Assignments</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-users"></i> Batches</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-comments"></i> Doubts</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Nội dung riêng của view sẽ được chèn vào đây -->
+        <div class="content">
             @RenderBody()
-        </main>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - BTL_LTW_PRO - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <!-- Footer -->
+    <footer>
+        Design by BaoNguyenTran ^^
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        function toggleSidebar() {
+            let sidebar = document.getElementById("sidebar");
+            if (sidebar.style.display === "none" || sidebar.style.display === "") {
+                sidebar.style.display = "block";
+            } else {
+                sidebar.style.display = "none";
+            }
+        }
+
+        // Dropdown: hiển thị menu khi hover vào vùng dropdown
+        const dropdown = document.getElementById('userDropdown');
+        let hideTimer = null;
+        dropdown.addEventListener('mouseenter', () => {
+            clearTimeout(hideTimer);
+            dropdown.classList.add('show');
+        });
+        dropdown.addEventListener('mouseleave', () => {
+            hideTimer = setTimeout(() => {
+                dropdown.classList.remove('show');
+            }, 3000);
+        });
+    </script>
+    <script src="./lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
