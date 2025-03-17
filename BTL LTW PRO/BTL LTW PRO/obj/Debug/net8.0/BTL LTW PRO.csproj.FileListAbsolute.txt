@@ -32,3 +32,37 @@ E:\Githup Project\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\refint\BT
 E:\Githup Project\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.pdb
 E:\Githup Project\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.genruntimeconfig.cache
 E:\Githup Project\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\ref\BTL LTW PRO.dll
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\bin\Debug\net8.0\appsettings.json
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\bin\Debug\net8.0\BTL LTW PRO.staticwebassets.runtime.json
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\bin\Debug\net8.0\BTL LTW PRO.staticwebassets.endpoints.json
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\bin\Debug\net8.0\BTL LTW PRO.exe
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\bin\Debug\net8.0\BTL LTW PRO.deps.json
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\bin\Debug\net8.0\BTL LTW PRO.runtimeconfig.json
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\bin\Debug\net8.0\BTL LTW PRO.dll
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\bin\Debug\net8.0\BTL LTW PRO.pdb
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.AssemblyInfoInputs.cache
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.AssemblyInfo.cs
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.csproj.CoreCompileInputs.cache
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.RazorAssemblyInfo.cache
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.RazorAssemblyInfo.cs
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.sourcelink.json
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\scopedcss\bundle\BTL LTW PRO.styles.css
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\scopedcss\projectbundle\BTL LTW PRO.bundle.scp.css
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\staticwebassets\msbuild.BTL LTW PRO.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\staticwebassets\msbuild.BTL LTW PRO.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\staticwebassets\msbuild.build.BTL LTW PRO.props
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.BTL LTW PRO.props
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.BTL LTW PRO.props
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.dll
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\refint\BTL LTW PRO.dll
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.pdb
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\BTL LTW PRO.genruntimeconfig.cache
+C:\Users\HP\Documents\GitHub\BTL-Web-Pro\BTL LTW PRO\BTL LTW PRO\obj\Debug\net8.0\ref\BTL LTW PRO.dll
