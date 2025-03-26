@@ -1,4 +1,6 @@
-﻿@{
+﻿@using BTL_LTW_PRO.Models.ViewModels
+@model LoginViewModel
+@{
     ViewData["Title"] = "Login";
     Layout = null;
 }
@@ -50,7 +52,7 @@
                         <i class="fas fa-cubes fa-2x" style="color: #ff6219;"></i>
                         <h3 class="fw-bold">Logo</h3>
                     </div>
-                    <form id="loginForm">
+                    <form id="loginForm" asp-action="Login" asp-controller="Account" method="post">
                         <div class="mb-3 form-group">
                             <label class="form-label">Email address</label>
                             <input type="email" class="form-control" id="email" name="email">
@@ -67,9 +69,18 @@
                         </div>
                         <div class="text-center mt-3">
                             <a href="#" class="small text-muted">Forgot password?</a>
-                            <p class="mt-2">Don't have an account? <a href="#">Register here</a></p>
+                            <p class="mt-2">Don't have an account? <a href="register">Register here</a></p>
                         </div>
                         <p class="text-center text-muted mt-3">Terms of use. Privacy policy</p>
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <p>@error.ErrorMessage</p>
+                                }
+                            </div>
+                        }
                     </form>
                 </div>
             </div>
@@ -95,6 +106,7 @@
                 onSubmit: function (data) {
                     // Call API
                     console.log(data);
+                    document.querySelector("#loginForm").submit();
                 }
             });
         });

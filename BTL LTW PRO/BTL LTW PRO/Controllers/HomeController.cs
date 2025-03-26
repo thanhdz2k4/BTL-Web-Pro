@@ -1,10 +1,11 @@
 using System.Diagnostics;
 using BTL_LTW_PRO.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BTL_LTW_PRO.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -13,6 +14,7 @@ namespace BTL_LTW_PRO.Controllers
             _logger = logger;
         }
 
+        [RoleAuthorize("Admin", "Teacher")]
         public IActionResult Index()
         {
             return View();
@@ -23,10 +25,7 @@ namespace BTL_LTW_PRO.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+
+
     }
 }
