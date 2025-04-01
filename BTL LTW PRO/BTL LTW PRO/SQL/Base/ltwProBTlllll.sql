@@ -36,8 +36,6 @@ CREATE TABLE Lessons (
 );
 
 
-
-
 CREATE TABLE Enrollments (
     EnrollmentID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT FOREIGN KEY REFERENCES Users(UserID),
@@ -47,7 +45,7 @@ CREATE TABLE Enrollments (
 
 CREATE TABLE Assignments (
     AssignmentID INT PRIMARY KEY IDENTITY(1,1),
-    CourseID INT FOREIGN KEY REFERENCES Courses(CourseID),
+    LessonID INT FOREIGN KEY REFERENCES Lessons(LessonID),
     Title NVARCHAR(200) NOT NULL,
     Description TEXT,
     DueDate DATETIME
