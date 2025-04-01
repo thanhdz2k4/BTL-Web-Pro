@@ -1,0 +1,71 @@
+use LTW_PRO_3
+CREATE TABLE Roles (
+    RoleID INT PRIMARY KEY IDENTITY(1,1),
+    RoleName NVARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY IDENTITY(1,1),
+    FullName NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(255) NOT NULL,
+    RoleID INT FOREIGN KEY REFERENCES Roles(RoleID),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY IDENTITY(1,1),
+    CourseName NVARCHAR(200) NOT NULL,
+    Description TEXT,
+    InstructorID INT FOREIGN KEY REFERENCES Users(UserID),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+	BeginTime DATETIME,
+	EndTime DATETIME,
+);
+
+CREATE TABLE Lessons (
+    LessonID INT PRIMARY KEY IDENTITY(1,1),
+    CourseID INT FOREIGN KEY REFERENCES Courses(CourseID),
+    Title NVARCHAR(200) NOT NULL,
+    Content TEXT,
+    VideoURL NVARCHAR(255),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+	BeginTime DATETIME,
+	EndTime DATETIME,
+
+);
+
+
+
+
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    CourseID INT FOREIGN KEY REFERENCES Courses(CourseID),
+    EnrolledAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Assignments (
+    AssignmentID INT PRIMARY KEY IDENTITY(1,1),
+    CourseID INT FOREIGN KEY REFERENCES Courses(CourseID),
+    Title NVARCHAR(200) NOT NULL,
+    Description TEXT,
+    DueDate DATETIME
+);
+
+CREATE TABLE Submissions (
+    SubmissionID INT PRIMARY KEY IDENTITY(1,1),
+    AssignmentID INT FOREIGN KEY REFERENCES Assignments(AssignmentID),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    FileURL NVARCHAR(255),
+    SubmittedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Payments (
+    PaymentID INT PRIMARY KEY IDENTITY(1,1),
+    UserID INT FOREIGN KEY REFERENCES Users(UserID),
+    CourseID INT FOREIGN KEY REFERENCES Courses(CourseID),
+    Amount DECIMAL(10,2) NOT NULL,
+    PaymentDate DATETIME DEFAULT GETDATE(),
+    Status NVARCHAR(50) NOT NULL CHECK (Status IN ('Pending', 'Completed', 'Failed'))
+);
