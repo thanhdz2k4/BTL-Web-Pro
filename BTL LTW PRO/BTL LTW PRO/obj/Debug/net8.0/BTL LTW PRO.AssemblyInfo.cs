@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BTL LTW PRO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aae12dcf65a6716d7d5d443cb2bb3531cf213a10")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6bdcf8bf597d2caf4893d214be3c492f8da273a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("BTL LTW PRO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BTL LTW PRO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
