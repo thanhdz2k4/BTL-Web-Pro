@@ -10,15 +10,12 @@ namespace BTL_LTW_PRO.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Role { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<Submission> Submissions { get; set; }
+        public DbSet<Payment> Payments { get; set; }
        
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>()
-                .HasIndex(u => u.Email)
-                .IsUnique(); // Đảm bảo email không trùng lặp
-
-            base.OnModelCreating(modelBuilder);
-        }
     }
 }
