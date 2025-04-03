@@ -1,0 +1,134 @@
+﻿@using BTL_LTW_PRO.Models.ViewModels
+@model List<Lesson>
+@{
+    ViewData["Title"] = "Lessons";
+    var idCourse = ViewData["idCourse"];
+}
+
+<!-- Page Title and Add Lesson Button -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Live Classes</h4>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addLessonModal">+ Thêm buổi học</button>
+</div>
+
+<!-- Navigation & Search -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <button class="btn btn-primary">Danh sách buổi học hiện có</button>
+        <button class="btn btn-outline-secondary">Bài tập</button>
+    </div>
+    <input type="text" class="form-control w-25" placeholder="Tìm kiếm...">
+</div>
+
+<!-- Danh sách lịch học -->
+<div class="list-group">
+    @foreach(var obj in Model)
+    {
+        <div class="list-group-item list-group-item-success mb-3">
+            @obj.Title (@obj.BeginTime?.ToString("dd/MM/yyyy"))
+        </div>
+    }
+</div>
+
+<!-- Modal Thêm Buổi Học -->
+<div class="modal fade" id="addLessonModal" tabindex="-1" aria-labelledby="addLessonModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addLessonModalLabel">Thêm Buổi Học</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create" asp-controller="Lesson" method="post">
+                    
+                    <!-- ID Ẩn nhưng vẫn gửi dữ liệu -->
+                    <input type="hidden" id="CourseID" name="CourseID" value="@idCourse">
+
+                    <div class="mb-3">
+                        <label class="form-label">Lesson ID:</label>
+                        <input type="text" class="form-control" value="@idCourse" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Title" class="form-label">Tên buổi học</label>
+                        <input type="text" class="form-control" id="Title" name="Title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Content" class="form-label">Nội dung</label>
+                        <textarea class="form-control" id="Content" name="Content"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="VideoURL" class="form-label">Link buổi học</label>
+                        <input type="text" class="form-control" id="VideoURL" name="VideoURL">
+                    </div>
+                    <div class="mb-3">
+                        <label for="BeginTime" class="form-label">Thời gian bắt đầu</label>
+                        <input type="datetime-local" class="form-control" id="BeginTime" name="BeginTime">
+                    </div>
+                    <div class="mb-3">
+                        <label for="EndTime" class="form-label">Thời gian kết thúc</label>
+                        <input type="datetime-local" class="form-control" id="EndTime" name="EndTime">
+                    </div>
+
+                    <!-- Modal Footer (Thêm nút Submit) -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("#addLessonModal form");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Ngăn chặn submit mặc định
+
+            // Tạo object từ form data
+            const formData = {
+                CourseID: document.querySelector("#CourseID").value,
+                Title: document.querySelector("#Title").value,
+                Content: document.querySelector("#Content").value,
+                VideoURL: document.querySelector("#VideoURL").value,
+                BeginTime: document.querySelector("#BeginTime").value,
+                EndTime: document.querySelector("#EndTime").value
+            };
+
+            fetch(form.action, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Thêm bài học thành công!");
+
+                    // Cập nhật danh sách bài học mà không cần tải lại trang
+                    const lessonList = document.querySelector(".list-group");
+                    const newLesson = document.createElement("div");
+                    newLesson.className = "list-group-item list-group-item-success mb-3";
+                    newLesson.innerHTML = `${data.lesson.Title} (${new Date(data.lesson.BeginTime).toLocaleDateString("vi-VN")})`;
+                    lessonList.appendChild(newLesson);
+
+                    // Đóng modal và reset form
+                    document.querySelector("#addLessonModal").classList.remove("show");
+                    document.querySelector(".modal-backdrop").remove();
+                    form.reset();
+                } else {
+                    alert("Có lỗi xảy ra:\n" + data.errors.map(e => `${e.Field}: ${e.Errors.join(", ")}`).join("\n"));
+                }
+            })
+            .catch(error => console.error("Lỗi khi gửi yêu cầu:", error));
+        });
+    });
+</script>
+
+

@@ -8,18 +8,19 @@ namespace BTL_LTW_PRO.Models
         [Key]
         public int LessonID { get; set; }
 
-        [ForeignKey("Course")]
+        [Required]
         public int CourseID { get; set; }
-        public Course Course { get; set; } = new Course();
+
+        [ForeignKey("CourseID")]
+        public Course? Course { get; set; } 
 
         [Required]
-        [MaxLength(200)]
-        public string Title { get; set; } = "";
+        public string Title { get; set; }
 
-        public string Content { get; set; } = "";
-        public string VideoURL { get; set; } = "";
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public string Content { get; set; }
+        public string VideoURL { get; set; }
         public DateTime? BeginTime { get; set; }
         public DateTime? EndTime { get; set; }
     }
+
 }
