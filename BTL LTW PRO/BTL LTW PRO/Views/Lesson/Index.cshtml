@@ -3,12 +3,17 @@
 @{
     ViewData["Title"] = "Lessons";
     var idCourse = ViewData["idCourse"];
+    string userRole = ViewData["UserRole"] as string;
 }
 
 <!-- Page Title and Add Lesson Button -->
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h4>Live Classes</h4>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addLessonModal">+ Thêm buổi học</button>
+    @if (userRole == "teacher")
+    {
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addLessonModal">+ Thêm buổi học</button>
+    }
+   
 </div>
 
 <!-- Navigation & Search -->
@@ -22,10 +27,43 @@
 
 <!-- Danh sách lịch học -->
 <div class="list-group">
-    @foreach(var obj in Model)
+    @foreach (var obj in Model)
     {
-        <div class="list-group-item list-group-item-success mb-3">
-            @obj.Title (@obj.BeginTime?.ToString("dd/MM/yyyy"))
+        <div class="list-group-item list-group-item-success mb-3 d-flex justify-content-between align-items-center">
+            <div>
+                @obj.Title
+                @if (obj.BeginTime != null)
+                {
+                    @obj.BeginTime?.ToString("dd/MM/yyyy")
+                }
+                else
+                {
+                    <span>(Chưa có thời gian)</span>
+                }
+            </div>
+            <div class="btn-group">
+                <!-- Edit Button - Triggers a modal -->
+                @if (userRole == "teacher")
+                {
+                    <button class="btn btn-sm btn-outline-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editLessonModal"
+                            data-lesson-id="@obj.LessonID"
+                            data-title="@obj.Title"
+                            data-content="@obj.Content"
+                            data-videourl="@obj.VideoURL"
+                            data-begintime="@obj.BeginTime?.ToString("yyyy-MM-ddTHH:mm")"
+                            data-endtime="@obj.EndTime?.ToString("yyyy-MM-ddTHH:mm")">
+                        <i class="fas fa-edit"></i> Sửa
+                    </button>
+
+                    <!-- Delete Button -->
+                    <button class="btn btn-sm btn-outline-danger delete-lesson" data-lesson-id="@obj.LessonID">
+                        <i class="fas fa-trash-alt"></i> Xóa
+                    </button>
+                }                
+
+            </div>
         </div>
     }
 </div>
@@ -82,14 +120,57 @@
     </div>
 </div>
 
+<!--Model edit-->
+<div class="modal fade" id="editLessonModal" tabindex="-1" aria-labelledby="editLessonModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editLessonModalLabel">Sửa Buổi Học</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editLessonForm" method="post">
+                    <input type="hidden" id="editLessonID" name="LessonID">
+                    <input type="hidden" name="CourseID" value="@idCourse">
+
+                    <div class="mb-3">
+                        <label for="editTitle" class="form-label">Tên buổi học</label>
+                        <input type="text" class="form-control" id="editTitle" name="Title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editContent" class="form-label">Nội dung</label>
+                        <textarea class="form-control" id="editContent" name="Content"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editVideoURL" class="form-label">Link buổi học</label>
+                        <input type="text" class="form-control" id="editVideoURL" name="VideoURL">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editBeginTime" class="form-label">Thời gian bắt đầu</label>
+                        <input type="datetime-local" class="form-control" id="editBeginTime" name="BeginTime">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editEndTime" class="form-label">Thời gian kết thúc</label>
+                        <input type="datetime-local" class="form-control" id="editEndTime" name="EndTime">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector("#addLessonModal form");
 
         form.addEventListener("submit", function (event) {
-            event.preventDefault(); // Ngăn chặn submit mặc định
+            event.preventDefault();
 
-            // Tạo object từ form data
             const formData = {
                 CourseID: document.querySelector("#CourseID").value,
                 Title: document.querySelector("#Title").value,
@@ -102,33 +183,161 @@
             fetch(form.action, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(formData)
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
-                    alert("Thêm bài học thành công!");
-
-                    // Cập nhật danh sách bài học mà không cần tải lại trang
+                    // Create the new lesson element with proper formatting
                     const lessonList = document.querySelector(".list-group");
                     const newLesson = document.createElement("div");
                     newLesson.className = "list-group-item list-group-item-success mb-3";
-                    newLesson.innerHTML = `${data.lesson.Title} (${new Date(data.lesson.BeginTime).toLocaleDateString("vi-VN")})`;
-                    lessonList.appendChild(newLesson);
 
-                    // Đóng modal và reset form
-                    document.querySelector("#addLessonModal").classList.remove("show");
-                    document.querySelector(".modal-backdrop").remove();
+                    // Format the title and date exactly like your original code
+                    newLesson.innerHTML = `${data.lesson.title}`;
+
+                    if (data.lesson.beginTime) {
+                        // Format the date as dd/MM/yyyy
+                        const date = new Date(data.lesson.beginTime);
+                        const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+                        newLesson.innerHTML += ` ${formattedDate}`;
+                    } else {
+                        newLesson.innerHTML += ` <span>(Chưa có thời gian)</span>`;
+                    }
+
+                    lessonList.prepend(newLesson); // Add to the top of the list
+
+                    // Close modal and reset form
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('addLessonModal'));
+                    modal.hide();
                     form.reset();
+
+                    alert("Thêm bài học thành công!");
                 } else {
-                    alert("Có lỗi xảy ra:\n" + data.errors.map(e => `${e.Field}: ${e.Errors.join(", ")}`).join("\n"));
+                    alert("Có lỗi xảy ra:\n" + (data.errors || "Unknown error"));
                 }
             })
-            .catch(error => console.error("Lỗi khi gửi yêu cầu:", error));
+            .catch(error => {
+                console.error("Lỗi khi gửi yêu cầu:", error);
+                alert("Có lỗi xảy ra khi gửi yêu cầu.");
+            });
         });
     });
+
+    // Xử lý sự kiện khi modal edit được mở
+    document.getElementById('editLessonModal').addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Button triggered the modal
+        var modal = this;
+
+        // Lấy dữ liệu từ các thuộc tính data-* của button
+        modal.querySelector('#editLessonID').value = button.getAttribute('data-lesson-id');
+        modal.querySelector('#editTitle').value = button.getAttribute('data-title');
+        modal.querySelector('#editContent').value = button.getAttribute('data-content');
+        modal.querySelector('#editVideoURL').value = button.getAttribute('data-videourl');
+
+        // Xử lý datetime-local (cần đúng định dạng yyyy-MM-ddTHH:mm)
+        var beginTime = button.getAttribute('data-begintime');
+        var endTime = button.getAttribute('data-endtime');
+
+        modal.querySelector('#editBeginTime').value = beginTime ? beginTime : '';
+        modal.querySelector('#editEndTime').value = endTime ? endTime : '';
+    });
+
+    // Xử lý submit form edit
+        document.getElementById('editLessonForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = {
+            LessonID: document.querySelector('#editLessonID').value,
+            CourseID: '@idCourse',
+            Title: document.querySelector('#editTitle').value,
+            Content: document.querySelector('#editContent').value,
+            VideoURL: document.querySelector('#editVideoURL').value,
+            BeginTime: document.querySelector('#editBeginTime').value,
+            EndTime: document.querySelector('#editEndTime').value
+        };
+
+        fetch(`/Lesson/Edit/${formData.LessonID}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Cập nhật thành công!");
+
+                // Cập nhật ngay trên giao diện mà không cần tải lại trang
+                let lessonItem = document.querySelector(`[data-lesson-id="${formData.LessonID}"]`).closest('.list-group-item');
+                lessonItem.querySelector('div:first-child').innerHTML = `${formData.Title} ${formData.BeginTime ? new Date(formData.BeginTime).toLocaleDateString("vi-VN") : "(Chưa có thời gian)"}`;
+
+                // Đóng modal
+                bootstrap.Modal.getInstance(document.getElementById('editLessonModal')).hide();
+            } else {
+                alert("Có lỗi xảy ra: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Lỗi khi gửi yêu cầu:", error);
+            alert("Có lỗi xảy ra khi gửi yêu cầu.");
+        });
+    });
+
+
+    // Xử lý xóa bài học
+           document.addEventListener("DOMContentLoaded", function () {
+        // Bắt sự kiện khi click vào nút xóa
+        document.querySelectorAll(".delete-lesson").forEach(button => {
+            button.addEventListener("click", function () {
+                const lessonId = this.getAttribute("data-lesson-id");
+
+                if (!confirm("Bạn có chắc muốn xóa bài học này?")) {
+                    return;
+                }
+
+                fetch(`/Lesson/Delete/${lessonId}`, {  // Đổi đường dẫn phù hợp với route của bạn
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Xóa bài học thành công!");
+
+                        // Xóa bài học khỏi giao diện
+                        this.closest(".list-group-item").remove();
+                    } else {
+                        alert("Xóa thất bại: " + (data.message || "Lỗi không xác định"));
+                    }
+                })
+                .catch(error => {
+                    console.error("Lỗi khi xóa bài học:", error);
+                    alert("Có lỗi xảy ra khi gửi yêu cầu xóa.");
+                });
+            });
+        });
+    });
+
+
+
+
+
+
+
 </script>
 
 

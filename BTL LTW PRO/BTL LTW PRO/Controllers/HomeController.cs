@@ -14,7 +14,7 @@ namespace BTL_LTW_PRO.Controllers
             _logger = logger;
         }
 
-        [RoleAuthorize("Admin", "Teacher")]
+        //[RoleAuthorize("Admin", "Teacher")]
         public IActionResult Index()
         {
             return View();

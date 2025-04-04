@@ -16,8 +16,10 @@ namespace BTL_LTW_PRO.Controllers
         public IActionResult Index()
         {
             int idCourseTest = 1;
+            string userRole = HttpContext.Session.GetString("UserRole");
             var lessons = _context.Lessons.Where(p => p.CourseID == idCourseTest).ToList();
             ViewData["idCourse"] = idCourseTest;
+            ViewData["UserRole"] = userRole;
 
             return View(lessons);
         }
@@ -40,6 +42,69 @@ namespace BTL_LTW_PRO.Controllers
 
             return Json(new { success = true, lesson });
         }
+
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var lesson = _context.Lessons.Find(id);
+            if (lesson == null)
+            {
+                return Json(new { success = false, message = "Bài học không tồn tại!" });
+            }
+
+            _context.Lessons.Remove(lesson);
+            _context.SaveChanges();
+
+            return Json(new { success = true });
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var lesson = await _context.Lessons.FindAsync(id);
+            if (lesson == null)
+            {
+                return NotFound();
+            }
+            return View(lesson);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [FromBody] Lesson lesson)
+        {
+            if (id != lesson.LessonID)
+            {
+                return BadRequest(new { success = false, message = "Dữ liệu không hợp lệ!" });
+            }
+
+            var existingLesson = await _context.Lessons.FindAsync(id);
+            if (existingLesson == null)
+            {
+                return NotFound(new { success = false, message = "Bài học không tồn tại!" });
+            }
+
+            try
+            {
+                existingLesson.Title = lesson.Title;
+                existingLesson.Content = lesson.Content;
+                existingLesson.VideoURL = lesson.VideoURL;
+                existingLesson.BeginTime = lesson.BeginTime;
+                existingLesson.EndTime = lesson.EndTime;
+
+                await _context.SaveChangesAsync();
+
+                return Ok(new { success = true, lesson = existingLesson });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = "Lỗi hệ thống!", error = ex.Message });
+            }
+        }
+
+
+
 
 
 

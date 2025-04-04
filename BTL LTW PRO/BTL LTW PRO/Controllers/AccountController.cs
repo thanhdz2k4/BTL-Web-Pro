@@ -80,7 +80,7 @@ namespace BTL_LTW_PRO.Controllers
                 return View(model);
             }
 
-            var role = await _context.Role.FirstOrDefaultAsync(u => u.RoleID == user.RoleID);
+            var role = await _context.Roles.FirstOrDefaultAsync(u => u.RoleID == user.RoleID);
             if (role == null) {
                 return View(model);
             }
@@ -96,11 +96,11 @@ namespace BTL_LTW_PRO.Controllers
             }
             else if (user.RoleID == 2) // teacher
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Lesson");
             }
             else if (user.RoleID == 3) // student
             {
-                return RedirectToAction("show", "Student");
+                return RedirectToAction("Index", "Lesson");
             }
 
             return View(model);
