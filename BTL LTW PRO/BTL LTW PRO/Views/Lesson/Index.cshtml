@@ -30,17 +30,20 @@
     @foreach (var obj in Model)
     {
         <div class="list-group-item list-group-item-success mb-3 d-flex justify-content-between align-items-center">
-            <div>
-                @obj.Title
-                @if (obj.BeginTime != null)
-                {
-                    @obj.BeginTime?.ToString("dd/MM/yyyy")
-                }
-                else
-                {
-                    <span>(Chưa có thời gian)</span>
-                }
-            </div>
+            <a class="Lesson-card" asp-controller="Lesson" asp-action="Detail" asp-route-id="@obj.LessonID">
+                <div>
+                    @obj.Title
+                    @if (obj.BeginTime != null)
+                    {
+                        @obj.BeginTime?.ToString("dd/MM/yyyy")
+                    }
+                    else
+                    {
+                        <span>(Chưa có thời gian)</span>
+                    }
+                </div>
+                
+            </a>
             <div class="btn-group">
                 <!-- Edit Button - Triggers a modal -->
                 @if (userRole == "teacher")
@@ -61,12 +64,12 @@
                     <button class="btn btn-sm btn-outline-danger delete-lesson" data-lesson-id="@obj.LessonID">
                         <i class="fas fa-trash-alt"></i> Xóa
                     </button>
-                }                
-
+                }
             </div>
         </div>
     }
 </div>
+
 
 <!-- Modal Thêm Buổi Học -->
 <div class="modal fade" id="addLessonModal" tabindex="-1" aria-labelledby="addLessonModalLabel" aria-hidden="true">
@@ -163,6 +166,15 @@
         </div>
     </div>
 </div>
+
+<style>
+    .Lesson-card {
+        text-align: center;
+        text-decoration: none; 
+        color: black;
+    }
+
+</style>
 
 <script>
         document.addEventListener("DOMContentLoaded", function () {

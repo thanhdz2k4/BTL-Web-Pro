@@ -71,6 +71,18 @@ namespace BTL_LTW_PRO.Controllers
             return View(lesson);
         }
 
+
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            var lesson = _context.Lessons.Where(p => p.LessonID == id);
+            if (lesson == null)
+            {
+                return NotFound();
+            }    
+            return View(lesson);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [FromBody] Lesson lesson)
         {
