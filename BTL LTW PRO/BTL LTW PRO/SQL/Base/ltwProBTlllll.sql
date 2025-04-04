@@ -67,3 +67,7 @@ CREATE TABLE Payments (
     PaymentDate DATETIME DEFAULT GETDATE(),
     Status NVARCHAR(50) NOT NULL CHECK (Status IN ('Pending', 'Completed', 'Failed'))
 );
+
+
+ALTER TABLE Lessons 
+ALTER COLUMN Content Nvarchar(4000);

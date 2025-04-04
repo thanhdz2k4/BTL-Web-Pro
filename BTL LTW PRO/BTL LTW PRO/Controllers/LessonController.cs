@@ -72,16 +72,20 @@ namespace BTL_LTW_PRO.Controllers
         }
 
 
-        [HttpGet]
         public IActionResult Detail(int id)
         {
-            var lesson = _context.Lessons.Where(p => p.LessonID == id);
+            var lesson = _context.Lessons.FirstOrDefault(l => l.LessonID == id);
+
+            string userRole = HttpContext.Session.GetString("UserRole");
+
             if (lesson == null)
             {
                 return NotFound();
-            }    
-            return View(lesson);
+            }
+            ViewData["UserRole"] = userRole;
+            return View(lesson); // Truyền đối tượng Lesson vào view
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [FromBody] Lesson lesson)

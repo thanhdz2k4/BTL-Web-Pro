@@ -1,0 +1,53 @@
+﻿@using BTL_LTW_PRO.Models.ViewModels
+@model Lesson
+@{
+    string userRole = ViewData["UserRole"] as string;
+}
+
+<!-- Page Layout -->
+<div class="container">
+    <!-- Tiêu đề -->
+    <div class="card bg-light-green p-3">
+        @Model.Title
+    </div>
+
+    <!-- Nội dung lớp học -->
+    <div class="card bg-light-green p-3">
+        <p>Thời gian mở: @Model.BeginTime</p>
+        <p>Thời gian đóng: @Model.EndTime</p>
+        <p>@Model.Content</p>
+
+
+        @if (DateTime.Now > Model.EndTime)
+        {
+            <p class="text-danger">Phòng học này đã đóng</p>
+        }
+
+        <!-- Nút thao tác -->
+        <div class="d-flex justify-content-end mt-3">
+
+            @if(userRole == "teacher")
+            {
+                <button class="btn btn-primary me-2">Giao bài tập</button>
+            }
+
+            @if (Model.BeginTime <= DateTime.Now && DateTime.Now <= Model.EndTime)
+            {
+                <button class="btn btn-primary">Tham gia</button>
+            }
+            else
+            {
+                <button class="btn btn-secondary" disabled>Tham gia</button>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- CSS -->
+<style>
+    .bg-light-green {
+        margin-top: 10px;
+        background-color: #E8FDE8; /* Nền xanh nhạt */
+        border-radius: 5px;
+    }
+</style>
