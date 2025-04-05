@@ -1,0 +1,122 @@
+﻿@{
+    var courseID = ViewData["CourseID"] as string;
+}
+<div class="mb-3">
+    <button class="btn btn-primary btn-pending-list">Danh sách xin vào lớp</button>
+    <button class="btn btn-outline-secondary btn-approved-list">Danh sách đã vào lớp</button>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Họ tên</th>
+            <th>Email</th>
+            <th>Ngày đăng ký</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody id="student-table-body">
+       
+    </tbody>
+</table>
+
+<script>
+    const courseID = "@courseID"; 
+
+    const Pending = document.querySelector(".btn-pending-list");
+    const Approved = document.querySelector(".btn-approved-list");
+
+
+    Pending.addEventListener("click", function() {
+        loadPendingList();
+
+          // Đổi màu nút
+        Pending.classList.add("btn-primary");
+        Pending.classList.remove("btn-outline-secondary");
+
+        Approved.classList.add("btn-outline-secondary");
+        Approved.classList.remove("btn-primary");
+
+    });
+    Approved.addEventListener("click", function() {
+        loadApprovedList();
+
+            // Đổi màu nút
+        Approved.classList.add("btn-primary");
+        Approved.classList.remove("btn-outline-secondary");
+
+        Pending.classList.add("btn-outline-secondary");
+        Pending.classList.remove("btn-primary");
+
+    });
+
+    function loadPendingList() {
+        fetch(`/Home/PendingRequests/${courseID}`)
+            .then(res => res.json())
+            .then(data => {
+                const tbody = document.getElementById("student-table-body");
+                tbody.innerHTML = "";
+                data.forEach(student => {
+                    const row = `
+                        <tr>
+                            <td>${student.user.fullName}</td>
+                            <td>${student.user.email}</td>
+                            <td>${new Date(student.enrolledAt).toLocaleString()}</td>
+                            <td>
+                                <button class="btn btn-success btn-sm" onclick="approveStudent(${student.enrollmentID})">Duyệt</button>
+                                <button class="btn btn-danger btn-sm" onclick="rejectStudent(${student.enrollmentID})">Từ chối</button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+            });
+    }
+
+     function loadApprovedList() {
+        fetch(`/Home/ApprovedStudents/${courseID}`)
+            .then(res => res.json())
+            .then(data => {
+                const tbody = document.getElementById("student-table-body");
+                tbody.innerHTML = "";
+                data.forEach(student => {
+                    const row = `
+                        <tr>
+                            <td>${student.user.fullName}</td>
+                            <td>${student.user.email}</td>
+                            <td>${new Date(student.enrolledAt).toLocaleString()}</td>
+                            <td>
+                                <button class="btn btn-success btn-sm" ">xem thông tin</button>
+                                <button class="btn btn-danger btn-sm" onclick="rejectStudent(${student.enrollmentID})">Xoá</button>
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+            });
+    }
+
+    function approveStudent(enrollmentID) {
+        fetch(`/Home/ApproveStudent/${enrollmentID}`, { method: "POST" })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) loadPendingList();
+                else alert(data.message);
+            });
+    }
+
+    function rejectStudent(enrollmentID) {
+        if (confirm("Bạn có chắc chắn muốn từ chối học sinh này không?")) {
+            fetch(`/Home/RejectStudent/${enrollmentID}`, { method: "DELETE" })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) loadPendingList();
+                    else alert(data.message);
+                });
+        }
+    }
+
+    // Tải danh sách xin vào lớp mặc định khi mở trang
+    loadPendingList();
+</script>
+

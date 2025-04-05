@@ -1,0 +1,70 @@
+﻿@model BTL_LTW_PRO.Models.Course
+@{
+    ViewData["Title"] = "Create Course";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create New Course</h2>
+
+<form id="create-course-form">
+    <div class="mb-3">
+        <label for="CourseName" class="form-label">Course Name</label>
+        <input type="text" class="form-control" id="CourseName" name="CourseName" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="Description" class="form-label">Description</label>
+        <textarea class="form-control" id="Description" name="Description"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="BeginTime" class="form-label">Begin Time</label>
+        <input type="datetime-local" class="form-control" id="BeginTime" name="BeginTime">
+    </div>
+
+    <div class="mb-3">
+        <label for="EndTime" class="form-label">End Time</label>
+        <input type="datetime-local" class="form-control" id="EndTime" name="EndTime">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Course</button>
+</form>
+
+<script>
+    document.getElementById("create-course-form").addEventListener("submit", function (event) {
+        event.preventDefault(); // Ngăn chặn load lại trang
+
+        userID = @Json.Serialize(ViewBag.UserID)
+        courseID =  @Json.Serialize(ViewBag.CourseID);
+
+        let beginTime = document.getElementById("BeginTime").value;
+        let endTime = document.getElementById("EndTime").value;
+
+        // Nếu người dùng nhập thời gian, kiểm tra xem BeginTime có nhỏ hơn EndTime không
+        if (beginTime && endTime && new Date(beginTime) >= new Date(endTime)) {
+            alert("Begin Time phải nhỏ hơn End Time!");
+            return; // Dừng submit
+        }
+
+        let formData = {
+            CourseID: courseID,
+            CourseName: document.getElementById("CourseName").value,
+            Description: document.getElementById("Description").value,
+            InstructorID: userID,
+            BeginTime: document.getElementById("BeginTime").value || null,
+            EndTime: document.getElementById("EndTime").value || null
+        };
+
+        fetch("/Home/Create", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Course created successfully!");
+            window.location.href = "/Home/Index"; // Chuyển hướng về danh sách khóa học
+        })
+        .catch(error => console.error("Error:", error));
+    });
+</script>
