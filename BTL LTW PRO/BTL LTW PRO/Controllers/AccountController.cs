@@ -14,6 +14,8 @@ namespace BTL_LTW_PRO.Controllers
         {
             _context = context;
         }
+
+
         // GET: Register
         public IActionResult Register()
         {
@@ -31,7 +33,6 @@ namespace BTL_LTW_PRO.Controllers
             }
 
           
-
             // Kiểm tra trùng email
             if (await _context.Users.AnyAsync(u => u.Email == model.Email))
             {
@@ -100,7 +101,7 @@ namespace BTL_LTW_PRO.Controllers
             }
             else if (user.RoleID == 3) // student
             {
-                return RedirectToAction("show", "Student");
+                return RedirectToAction("ShowCourse", "Student");
             }
 
             return View(model);
@@ -124,6 +125,8 @@ namespace BTL_LTW_PRO.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("Login", "Account");
         }
+
+        
 
 
     }

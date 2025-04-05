@@ -6,7 +6,8 @@
 <!-- Page Title and Add Class Button -->
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h4>Live Classes</h4>
-    <button class="btn btn-primary">+ Add Class</button>
+    <a class="btn btn-primary" asp-action="Create" asp-controller="Home">+ Add Class</a>
+
 </div>
 
 <!-- Navigation & Search -->
@@ -19,187 +20,83 @@
 </div>
 
 <!-- Danh sách lớp học -->
-<div class="row g-3">
-    <div class="col-md-4 col-sm-6">
-        <div class="card bg-danger mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Ongoing</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 col-sm-6">
-        <div class="card bg-success mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Starting in 60 Minutes</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 col-sm-6">
-        <div class="card mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Not Started</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-     <div class="col-md-4 col-sm-6">
-        <div class="card mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Not Started</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-     <div class="col-md-4 col-sm-6">
-        <div class="card mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Not Started</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-     <div class="col-md-4 col-sm-6">
-        <div class="card mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Not Started</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-     <div class="col-md-4 col-sm-6">
-        <div class="card mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Not Started</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-     <div class="col-md-4 col-sm-6">
-        <div class="card mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Not Started</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-     <div class="col-md-4 col-sm-6">
-        <div class="card mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Not Started</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-     <div class="col-md-4 col-sm-6">
-        <div class="card mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Not Started</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-     <div class="col-md-4 col-sm-6">
-        <div class="card mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Not Started</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-     <div class="col-md-4 col-sm-6">
-        <div class="card mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Not Started</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 col-sm-6">
-        <div class="card mb-3 d-flex flex-column h-100">
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">How to Make an Array and its Types in C++</h5>
-                <p class="card-text batch-label text-gray mt-auto">Batch: 3CD - JYY</p>
-                <p class="card-text text-gray">
-                    <i class="fa-regular fa-clock"></i> 01:40 PM &nbsp;&nbsp;
-                    <i class="fa-regular fa-calendar"></i> 03 Jan 2023
-                </p>
-                <p class="card-text status-label"><b>Status:</b> Not Started</p>
-                <button class="btn btn-dark w-100">Report</button>
-            </div>
-        </div>
-    </div>
+<div class="row g-3" id="course-container">
+ 
 </div>
+
+<p id="no-course-message" class="text-danger fw-bold text-center mt-3" style="display: none;">
+    Bạn chưa có khóa học nào.
+</p>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    fetch("/Home/GetCourses")
+        .then(response => response.json())
+        .then(data => {
+            let container = document.getElementById("course-container");
+            const noCourseMessage = document.getElementById("no-course-message");
+            container.innerHTML = "";
+
+             if (!data || data.length === 0) {
+                noCourseMessage.style.display = "block"; // Hiện thông báo màu đỏ
+                return;
+            } else {
+                noCourseMessage.style.display = "none"; // Ẩn thông báo nếu có khóa học
+            }
+
+            data.forEach(course => {
+                let statusClass = "bg-light"; // Mặc định không có màu
+                let statusText = "Đã kết thúc";
+
+                // Xác định trạng thái và màu sắc
+                let now = new Date();
+                let beginTime = course.beginTime ? new Date(course.beginTime) : null;
+                let endTime = course.endTime ? new Date(course.endTime) : null;
+
+                if (beginTime && now >= beginTime && (!endTime || now <= endTime)) {
+                    statusClass = "bg-danger";
+                    statusText = "Đang diễn ra";
+                } else if (beginTime && now < beginTime) {
+                    statusClass = "bg-success";
+                    statusText = "Chưa bắt đầu";
+                }
+
+                let courseCard = `
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card ${statusClass} mb-3 d-flex flex-column h-100">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">${course.courseName}</h5>
+                                <p class="card-text batch-label text-gray mt-auto">Mã Lớp: ${course.courseID}</p>
+                                <p class="card-text text-gray">
+                                    <i class="fa-regular fa-play-circle"></i> ${formatDate(course.beginTime)} &nbsp;&nbsp;
+                                    <i class="fa-regular fa-stop-circle"></i> ${formatDate(course.endTime)}
+                                </p>
+                                <p class="card-text status-label"><b>Status:</b> ${statusText}</p>
+                                <button class="btn btn-dark w-100">Report</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.innerHTML += courseCard;
+            });
+        })
+        .catch(error => console.error("Lỗi khi tải danh sách khóa học:", error));
+    });
+
+    // Hàm định dạng ngày
+    function formatDate(dateString) {
+        if (!dateString) return "N/A";
+        let date = new Date(dateString);
+        return date.toLocaleDateString("vi-VN", { day: "2-digit", month: "short", year: "numeric" });
+    }
+
+    // Hàm định dạng giờ
+    function formatTime(dateString) {
+        if (!dateString) return "N/A";
+        let date = new Date(dateString);
+        return date.toLocaleTimeString("vi-VN", { hour: "2-digit", minute: "2-digit" });
+    }
+
+
+</script>

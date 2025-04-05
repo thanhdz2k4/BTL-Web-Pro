@@ -10,11 +10,11 @@ namespace BTL_LTW_PRO.Models
 
         [ForeignKey("User")]
         public int UserID { get; set; }
-        public User User { get; set; } = new User();
+
 
         [ForeignKey("Course")]
-        public int CourseID { get; set; }
-        public Course Course { get; set; } = new Course();
+        public String CourseID { get; set; } = "";
+
 
         [Required]
         [Column(TypeName = "decimal(10,2)")]
