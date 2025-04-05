@@ -8,6 +8,6 @@ namespace BTL_LTW_PRO.Models
         public int RoleID { get; set; }
 
         [Required]
-        public string RoleName { get; set; }
+        public string RoleName { get; set; } = "";
     }
 }

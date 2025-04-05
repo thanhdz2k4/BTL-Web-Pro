@@ -25,7 +25,7 @@ namespace BTL_LTW_PRO.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public Role Role { get; set; } 
+       
 
        
     }
