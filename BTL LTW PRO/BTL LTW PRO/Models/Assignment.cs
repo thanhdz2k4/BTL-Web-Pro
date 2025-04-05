@@ -10,7 +10,6 @@ namespace BTL_LTW_PRO.Models
 
         [ForeignKey("Lesson")]
         public int LessonID { get; set; }
-        public Lesson lesson { get; set; } = new Lesson();
 
 
         [Required]
