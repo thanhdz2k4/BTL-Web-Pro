@@ -1,0 +1,119 @@
+﻿@using BTL_LTW_PRO.Models.ViewModels
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/fontawesome-free-6.7.2-web/css/all.min.css">
+    <title>Login Form</title>
+    <style>
+        body {
+            background-color: #9A616D;
+            height: 100vh;
+        }
+
+        .card {
+            border-radius: 1rem;
+        }
+
+        .img-container {
+            border-radius: 1rem 0 0 1rem;
+            background: url('/image/imgLogin.png') center/cover no-repeat;
+        }
+
+        .form-group.invalid .form-control {
+            border-color: red;
+        }
+
+        .form-group.invalid .invalid-feedback {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center h-100">
+        <div class="card shadow-lg" style="max-width: 900px; width: 100%;">
+            <div class="row g-0">
+                <!-- Image Section -->
+                <div class="col-md-6 img-container d-none d-md-block"></div>
+
+                <!-- Login Form Section -->
+                <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-cubes fa-2x" style="color: #ff6219;"></i>
+                        <h3 class="fw-bold">Logo</h3>
+                    </div>
+                    <form id="loginForm" asp-action="Login" asp-controller="Account" method="post">
+                        <div class="mb-3 form-group">
+                            <label class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email">
+                            <div class="invalid-feedback">Please enter a valid email.</div>
+                        </div>
+                        <div class="mb-3  form-group">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password">
+
+                            <div class="invalid-feedback">Password must be at least 6 characters.</div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-dark btn-lg">LOGIN</button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="#" class="small text-muted">Forgot password?</a>
+                            <p class="mt-2">Don't have an account? <a href="register">Register here</a></p>
+                        </div>
+                        <p class="text-center text-muted mt-3">Terms of use. Privacy policy</p>
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <p>@error.ErrorMessage</p>
+                                }
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/Validating.js">
+
+
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            Validator({
+                form: '#loginForm',
+                formGroupSelector: '.form-group',
+                errorSelector: '.invalid-feedback',
+                rules: [
+
+                    Validator.isEmail('#email'),
+                    Validator.minLength('#password', 6),
+
+                ],
+                onSubmit: function (data) {
+                    // Call API
+                    console.log(data);
+                    document.querySelector("#loginForm").submit();
+                }
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

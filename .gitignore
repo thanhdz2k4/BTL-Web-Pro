@@ -1,0 +1,44 @@
+#####################################
+# Lưu ý: File này nên đặt ở thư mục gốc repo
+# cùng cấp với file .sln
+#####################################
+
+# Hệ điều hành
+Thumbs.db
+*.DS_Store
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.userprefs
+*.sln.docstates
+
+# Thư mục build
+bin/
+**/bin/
+obj/
+
+# Thư mục publish (nếu có)
+out/
+publish/
+
+# Rider / Resharper (nếu dùng)
+.idea/
+*.sln.iml
+_ReSharper*/
+*.DotSettings.user
+
+# Logs
+*.log
+
+
+
+BTL LTW PRO/BTL LTW PRO/bin/Debug/net8.0/appsettings.json
+BTL LTW PRO/BTL LTW PRO/bin/Debug/net8.0/BTL LTW PRO.deps.json
+BTL LTW PRO/BTL LTW PRO/bin/Debug/net8.0/BTL LTW PRO.dll
+BTL LTW PRO/BTL LTW PRO/bin/Debug/net8.0/BTL LTW PRO.exe
+BTL LTW PRO/BTL LTW PRO/bin/Debug/net8.0/BTL LTW PRO.pdb
+BTL LTW PRO/BTL LTW PRO/bin/Debug/net8.0/BTL LTW PRO.runtimeconfig.json
+BTL LTW PRO/BTL LTW PRO/bin/Debug/net8.0/BTL LTW PRO.staticwebassets.endpoints.json
