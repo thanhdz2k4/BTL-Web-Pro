@@ -1,4 +1,6 @@
 ﻿CREATE DATABASE LTW_PRO_5
+USE LTW_PRO_5
+
 CREATE TABLE Roles (
     RoleID INT PRIMARY KEY IDENTITY(1,1),
     RoleName NVARCHAR(50) NOT NULL UNIQUE
@@ -39,7 +41,7 @@ CREATE TABLE Lessons (
 CREATE TABLE Enrollments (
     EnrollmentID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT FOREIGN KEY REFERENCES Users(UserID),
-    CourseID INT FOREIGN KEY REFERENCES Courses(CourseID),
+    CourseID NVARCHAR(200) FOREIGN KEY REFERENCES Courses(CourseID),
     EnrolledAt DATETIME DEFAULT GETDATE(), 
 	Sstatus nvarchar(20)
 );
@@ -63,7 +65,7 @@ CREATE TABLE Submissions (
 CREATE TABLE Payments (
     PaymentID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT FOREIGN KEY REFERENCES Users(UserID),
-    CourseID INT FOREIGN KEY REFERENCES Courses(CourseID),
+    CourseID NVARCHAR(200) FOREIGN KEY REFERENCES Courses(CourseID),
     Amount DECIMAL(10,2) NOT NULL,
     PaymentDate DATETIME DEFAULT GETDATE(),
     Status NVARCHAR(50) NOT NULL CHECK (Status IN ('Pending', 'Completed', 'Failed'))
