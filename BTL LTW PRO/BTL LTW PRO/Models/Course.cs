@@ -6,7 +6,7 @@ namespace BTL_LTW_PRO.Models
     public class Course
     {
         [Key]
-        public int CourseID { get; set; }
+        public String CourseID { get; set; } = "";
 
         [Required]
         [MaxLength(200)]
@@ -16,8 +16,6 @@ namespace BTL_LTW_PRO.Models
 
         [ForeignKey("Instructor")]
         public int InstructorID { get; set; }
-        public User Instructor { get; set; } = new User();
-
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? BeginTime { get; set; }
         public DateTime? EndTime { get; set; }
