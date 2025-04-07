@@ -74,7 +74,7 @@ namespace BTL_LTW_PRO.Controllers
                 return Json(new { success = false, message = "Khóa học không tồn tại." });
             }
 
-            if (course.EndTime < date) 
+            if (course.EndTime < date)
             {
                 return Json(new { success = false, message = "Khóa học đã kết thúc." });
             }
@@ -91,7 +91,7 @@ namespace BTL_LTW_PRO.Controllers
             {
                 UserID = userId.Value,
                 CourseID = courseId,
-                Status = "Pending"
+                Sstatus = "Pending"
             };
 
             _context.Enrollments.Add(enrollment);
@@ -121,7 +121,7 @@ namespace BTL_LTW_PRO.Controllers
             var courses = await (from e in _context.Enrollments
                                  join c in _context.Courses on e.CourseID equals c.CourseID
                                  join u in _context.Users on c.InstructorID equals u.UserID
-                                 where e.UserID == userId && e.Status == "Approved"
+                                 where e.UserID == userId && e.Sstatus == "Approved"
                                  select new
                                  {
                                      c.CourseID,
