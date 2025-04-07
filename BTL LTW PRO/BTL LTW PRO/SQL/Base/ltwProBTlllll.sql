@@ -1,4 +1,4 @@
-use LTW_PRO_3
+﻿CREATE DATABASE LTW_PRO_5
 CREATE TABLE Roles (
     RoleID INT PRIMARY KEY IDENTITY(1,1),
     RoleName NVARCHAR(50) NOT NULL UNIQUE
@@ -14,9 +14,9 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE Courses (
-    CourseID INT PRIMARY KEY IDENTITY(1,1),
+    CourseID NVARCHAR(200) PRIMARY KEY,
     CourseName NVARCHAR(200) NOT NULL,
-    Description TEXT,
+    Description NVARCHAR(4000),
     InstructorID INT FOREIGN KEY REFERENCES Users(UserID),
     CreatedAt DATETIME DEFAULT GETDATE(),
 	BeginTime DATETIME,
@@ -25,7 +25,7 @@ CREATE TABLE Courses (
 
 CREATE TABLE Lessons (
     LessonID INT PRIMARY KEY IDENTITY(1,1),
-    CourseID INT FOREIGN KEY REFERENCES Courses(CourseID),
+    CourseID NVARCHAR(200) FOREIGN KEY REFERENCES Courses(CourseID),
     Title NVARCHAR(200) NOT NULL,
     Content TEXT,
     VideoURL NVARCHAR(255),
@@ -40,7 +40,8 @@ CREATE TABLE Enrollments (
     EnrollmentID INT PRIMARY KEY IDENTITY(1,1),
     UserID INT FOREIGN KEY REFERENCES Users(UserID),
     CourseID INT FOREIGN KEY REFERENCES Courses(CourseID),
-    EnrolledAt DATETIME DEFAULT GETDATE()
+    EnrolledAt DATETIME DEFAULT GETDATE(), 
+	Sstatus nvarchar(20)
 );
 
 CREATE TABLE Assignments (
@@ -68,6 +69,3 @@ CREATE TABLE Payments (
     Status NVARCHAR(50) NOT NULL CHECK (Status IN ('Pending', 'Completed', 'Failed'))
 );
 
-
-ALTER TABLE Lessons 
-ALTER COLUMN Content Nvarchar(4000);
