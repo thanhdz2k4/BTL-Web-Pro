@@ -102,7 +102,7 @@ namespace BTL_LTW_PRO.Controllers
             var requests = _context.Enrollments
                                    .Include(e => e.User)
                                    .Include(e => e.Course)
-                                   .Where(e => e.Status == "Pending" && e.CourseID == courseID && e.Course.InstructorID == teacherId )
+                                   .Where(e => e.Sstatus == "Pending" && e.CourseID == courseID && e.Course.InstructorID == teacherId )
                                    .ToList();
 
             return Json(requests);
@@ -124,7 +124,7 @@ namespace BTL_LTW_PRO.Controllers
             var approvedStudents = _context.Enrollments
                                             .Include(e => e.User)   
                                             .Include(e => e.Course)  
-                                            .Where(e => e.CourseID == courseID && e.Course.InstructorID == teacherId && e.Status == "Approved")
+                                            .Where(e => e.CourseID == courseID && e.Course.InstructorID == teacherId && e.Sstatus == "Approved")
                                             .ToList();
 
           
@@ -142,7 +142,7 @@ namespace BTL_LTW_PRO.Controllers
             var enrollment = _context.Enrollments.Find(id);
             if (enrollment == null) return NotFound();
 
-            enrollment.Status = "Approved";
+            enrollment.Sstatus = "Approved";
             _context.SaveChanges();
 
             return Json(new { success = true });

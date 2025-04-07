@@ -14,11 +14,11 @@ namespace BTL_LTW_PRO.Models
         [ForeignKey("Course")]
         public string CourseID { get; set; } = "";
 
-        public string Status { get; set; } = "Pending";
+        public string Sstatus { get; set; } = "Pending";
 
         public DateTime EnrolledAt { get; set; } = DateTime.Now;
 
-        public User User { get; set; }  
+        public User User { get; set; }
         public virtual Course Course { get; set; }
     }
 }
