@@ -13,7 +13,7 @@ namespace BTL_LTW_PRO.Models
 
 
         [ForeignKey("Course")]
-        public String CourseID { get; set; } = "";
+        public string CourseID { get; set; } = "";
 
 
         [Required]

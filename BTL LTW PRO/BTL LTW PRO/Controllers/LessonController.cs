@@ -15,7 +15,7 @@ namespace BTL_LTW_PRO.Controllers
         }
         public IActionResult Index()
         {
-            int idCourseTest = 1;
+            string idCourseTest = "COURSE0001";
             string userRole = HttpContext.Session.GetString("UserRole");
             var lessons = _context.Lessons.Where(p => p.CourseID == idCourseTest).ToList();
             ViewData["idCourse"] = idCourseTest;

@@ -6,7 +6,7 @@ namespace BTL_LTW_PRO.Models
     public class Course
     {
         [Key]
-        public String CourseID { get; set; } = "";
+        public string CourseID { get; set; } = "";
 
         [Required]
         [MaxLength(200)]

@@ -71,3 +71,8 @@ CREATE TABLE Payments (
     Status NVARCHAR(50) NOT NULL CHECK (Status IN ('Pending', 'Completed', 'Failed'))
 );
 
+INSERT INTO Roles (RoleName)
+VALUES 
+  ('Admin'),
+  ('Teacher'),
+  ('Student');

@@ -9,7 +9,7 @@ namespace BTL_LTW_PRO.Models
         public int LessonID { get; set; }
 
         [Required]
-        public int CourseID { get; set; }
+        public string CourseID { get; set; }
 
         [ForeignKey("CourseID")]
         public Course? Course { get; set; } 

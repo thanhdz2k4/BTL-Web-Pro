@@ -12,9 +12,9 @@ namespace BTL_LTW_PRO.Models
         public int UserID { get; set; }
 
         [ForeignKey("Course")]
-        public String CourseID { get; set; } = "";
+        public string CourseID { get; set; } = "";
 
-        public String Status { get; set; } = "Pending";
+        public string Status { get; set; } = "Pending";
 
         public DateTime EnrolledAt { get; set; } = DateTime.Now;
 

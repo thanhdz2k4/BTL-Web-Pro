@@ -97,7 +97,7 @@ namespace BTL_LTW_PRO.Controllers
             }
             else if (user.RoleID == 2) // teacher
             {
-                return RedirectToAction("Index", "Lesson");
+                return RedirectToAction("Index", "Home");
             }
             else if (user.RoleID == 3) // student
             {
