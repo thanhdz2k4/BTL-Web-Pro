@@ -1,0 +1,27 @@
+@model BTL_LTW_PRO.Models.Assignment
+@{
+    ViewData["Title"] = "Xóa Câu Hỏi";
+}
+
+<h2>Xóa Câu Hỏi</h2>
+
+<h3>Bạn có chắc chắn muốn xóa câu hỏi này không?</h3>
+
+<div>
+    <strong>Tên câu hỏi:</strong> @Model.Title
+</div>
+
+<div>
+    <strong>Điểm:</strong> @Model.Description
+</div>
+
+<div>
+    <strong>Hạn nộp:</strong> @Model.DueDate.ToString("yyyy-MM-dd")
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="AssignmentID" />
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>
+

@@ -19,13 +19,13 @@ namespace BTL_LTW_PRO.Models
         [Required]
         public string PasswordHash { get; set; } = string.Empty;
 
-        [Required, ForeignKey("Role")]
+        [Required, ForeignKey("Roles")]
         public int RoleID { get; set; }
 
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-       
+        public Roles Roles { get; set; } 
 
        
     }

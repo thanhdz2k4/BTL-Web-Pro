@@ -89,7 +89,7 @@ namespace BTL_LTW_PRO.Controllers
             // Lưu Session
             HttpContext.Session.SetString("UserID", user.UserID.ToString());
             HttpContext.Session.SetString("UserName", user.FullName);
-            HttpContext.Session.SetString("UserRole", role.RoleName);
+            HttpContext.Session.SetString("UserRole", roles.RoleName);
 
             if (user.RoleID == 1) // admin
             {

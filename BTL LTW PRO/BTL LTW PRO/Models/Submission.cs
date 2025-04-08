@@ -1,21 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using BTL_LTW_PRO.Models; 
 
-namespace BTL_LTW_PRO.Models
+public class Submission
 {
-    public class Submission
-    {
-        [Key]
-        public int SubmissionID { get; set; }
+    public int SubmissionID { get; set; }
 
-        [ForeignKey("Assignment")]
-        public int AssignmentID { get; set; }
-        public Assignment? Assignment { get; set; }
+    public int AssignmentID { get; set; }
+    public Assignment Assignment { get; set; }
 
-        [ForeignKey("User")]
-        public int UserID { get; set; }
-    
-        public string FileURL { get; set; } = "";
-        public DateTime SubmittedAt { get; set; } = DateTime.Now;
-    }
+    public int UserID { get; set; }
+    public User User { get; set; }
+
+    public string FileURL { get; set; }
+
+    public DateTime SubmittedAt { get; set; } = DateTime.Now;
 }

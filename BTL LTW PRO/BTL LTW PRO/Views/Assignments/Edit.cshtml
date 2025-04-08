@@ -1,0 +1,41 @@
+@model BTL_LTW_PRO.Models.Assignment
+@{
+    ViewData["Title"] = "Edit Assignment";
+}
+
+<h2>Edit Assignment</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="AssignmentID" />
+
+    <div>
+        <label asp-for="Title">Tiêu đề</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Description">Mô tả </label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="DueDate"></label>
+        <input asp-for="DueDate" type="date" class="form-control" />
+        <span asp-validation-for="DueDate" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="LessonID">Môn học</label>
+        <select asp-for="LessonID" class="form-control"
+                asp-items="@(new SelectList(ViewBag.Lessons, "LessonID", "Title"))"></select>
+        <span asp-validation-for="LessonID" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Save</button>
+</form>
+
+<div class="mt-2">
+    <a asp-action="Index">Back to List</a>
+</div>

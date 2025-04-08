@@ -20,7 +20,7 @@ namespace BTL_LTW_PRO
             // Thêm dịch vụ Session
             builder.Services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(30); // Thời gian hết hạn session
+                options.IdleTimeout = TimeSpan.FromMinutes(31); // Thời gian hết hạn session
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
