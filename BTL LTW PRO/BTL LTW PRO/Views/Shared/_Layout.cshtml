@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Live Classes</title>
+
+    <!-- Bootstrap CSS -->
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/fontawesome-free-6.7.2-web/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -18,21 +20,17 @@
     <header>
         <h4 class="mb-0">TIPS-G</h4>
         <div class="d-flex align-items-center">
-            <h5 class="me-3 mb-0">Chào, @Context.Session.GetString("UserName") </h5>
+            <h5 class="me-3 mb-0">Chào, @Context.Session.GetString("UserName")</h5>
             <i class="fas fa-bell me-3"></i>
             <div class="dropdown" id="userDropdown">
-                <!-- Icon user -->
                 <div class="icon-user">
                     <i class="fas fa-user"></i>
                 </div>
-                <!-- Menu con -->
                 <div class="dropdown-menu" id="dropdownMenu">
                     <a class="dropdown-item" href="#"><i class="fas fa-circle-user"></i> My Profile</a>
                     <a class="dropdown-item" href="#"><i class="fas fa-clock-rotate-left"></i> Class History</a>
                     <hr class="dropdown-divider">
-                    <a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout"><i
-                            class="fas fa-right-from-bracket"></i>
-                        Log Out</a>
+                    <a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout"><i class="fas fa-right-from-bracket"></i> Log Out</a>
                 </div>
             </div>
         </div>
@@ -43,22 +41,14 @@
         <nav class="sidebar p-3" id="sidebar">
             <div class="nav-content">
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-tachometer-alt"></i>
-                            Dashboard</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link active text-dark"><i class="fas fa-video"></i> Live
-                            Classes</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-calendar-alt"></i>
-                            Schedule</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-question-circle"></i>
-                            Quizzes</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-file-alt"></i>
-                            Exams</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-tasks"></i>
-                            Assignments</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-users"></i> Batches</a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-comments"></i>
-                            Doubts</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active text-dark"><i class="fas fa-video"></i> Live Classes</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-calendar-alt"></i> Schedule</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-file-alt"></i> Exams</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-tasks"></i> Assignments</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-users"></i> Batches</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-dark"><i class="fas fa-comments"></i> Doubts</a></li>
                 </ul>
             </div>
         </nav>
@@ -74,6 +64,8 @@
         Design by BaoNguyenTran ^^
     </footer>
 
+    <!-- SCRIPT -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function toggleSidebar() {
             let sidebar = document.getElementById("sidebar");
@@ -84,7 +76,7 @@
             }
         }
 
-        // Dropdown: hiển thị menu khi hover vào vùng dropdown
+        // Dropdown user hover
         const dropdown = document.getElementById('userDropdown');
         let hideTimer = null;
         dropdown.addEventListener('mouseenter', () => {
@@ -97,9 +89,8 @@
             }, 800);
         });
     </script>
-    <script src="./lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    @RenderSection("Scripts", required: false)
 
+    @RenderSection("Scripts", required: false)
 </body>
 
 </html>

@@ -13,12 +13,13 @@ namespace BTL_LTW_PRO.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+
+   
+        public IActionResult Index(string id)
         {
-            string idCourseTest = "COURSE0001";
             string userRole = HttpContext.Session.GetString("UserRole");
-            var lessons = _context.Lessons.Where(p => p.CourseID == idCourseTest).ToList();
-            ViewData["idCourse"] = idCourseTest;
+            var lessons = _context.Lessons.Where(p => p.CourseID == id).ToList();
+            ViewData["idCourse"] = id;
             ViewData["UserRole"] = userRole;
 
             return View(lessons);

@@ -65,7 +65,9 @@
                     <div class="col-md-4 col-sm-6">
                         <div class="card ${statusClass} mb-3 d-flex flex-column h-100">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">${course.courseName}</h5>
+                                 <a href="/Lesson/Index?id=${course.courseID}" class="text-decoration-none">
+                                              <h5 class="card-title">${course.courseName}</h5>
+                                         </a>
                                 <p class="card-text batch-label text-gray mt-auto">Mã Lớp: ${course.courseID}</p>
                                 <p class="card-text text-gray">
                                     <i class="fa-regular fa-play-circle"></i> ${formatDate(course.beginTime)} &nbsp;&nbsp;

@@ -9,11 +9,11 @@
 <!-- Page Title and Add Lesson Button -->
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h4>Live Classes</h4>
-    @if (userRole == "teacher")
+    @if (userRole == "Teacher")
     {
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addLessonModal">+ Thêm buổi học</button>
     }
-   
+
 </div>
 
 <!-- Navigation & Search -->
@@ -46,7 +46,7 @@
             </a>
             <div class="btn-group">
                 <!-- Edit Button - Triggers a modal -->
-                @if (userRole == "teacher")
+                @if (userRole == "Teacher")
                 {
                     <button class="btn btn-sm btn-outline-primary"
                             data-bs-toggle="modal"
@@ -177,7 +177,7 @@
 </style>
 
 <script>
-        document.addEventListener("DOMContentLoaded", function () {
+            document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector("#addLessonModal form");
 
         form.addEventListener("submit", function (event) {
@@ -208,33 +208,97 @@
             })
             .then(data => {
                 if (data.success) {
-                    // Create the new lesson element with proper formatting
+                    // Tạo lesson mới với đầy đủ cấu trúc HTML
                     const lessonList = document.querySelector(".list-group");
                     const newLesson = document.createElement("div");
-                    newLesson.className = "list-group-item list-group-item-success mb-3";
+                    newLesson.className = "list-group-item list-group-item-success mb-3 d-flex justify-content-between align-items-center";
 
-                    // Format the title and date exactly like your original code
-                    newLesson.innerHTML = `${data.lesson.title}`;
+                    // Tạo phần nội dung bài học
+                    const lessonContent = document.createElement("a");
+                    lessonContent.className = "Lesson-card";
+                    lessonContent.href = `/Lesson/Detail/${data.lesson.lessonID}`;
 
+                    let contentHTML = `${data.lesson.title} `;
                     if (data.lesson.beginTime) {
-                        // Format the date as dd/MM/yyyy
                         const date = new Date(data.lesson.beginTime);
                         const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
-                        newLesson.innerHTML += ` ${formattedDate}`;
+                        contentHTML += formattedDate;
                     } else {
-                        newLesson.innerHTML += ` <span>(Chưa có thời gian)</span>`;
+                        contentHTML += `<span>(Chưa có thời gian)</span>`;
+                    }
+                    lessonContent.innerHTML = contentHTML;
+
+                    newLesson.appendChild(lessonContent);
+
+                    // Thêm nút sửa/xóa nếu là giáo viên
+                    if ('@userRole' === 'Teacher') {
+                        const buttonGroup = document.createElement("div");
+                        buttonGroup.className = "btn-group";
+
+                        // Nút sửa
+                        const editButton = document.createElement("button");
+                        editButton.className = "btn btn-sm btn-outline-primary";
+                        editButton.setAttribute("data-bs-toggle", "modal");
+                        editButton.setAttribute("data-bs-target", "#editLessonModal");
+                        editButton.setAttribute("data-lesson-id", data.lesson.lessonID);
+                        editButton.setAttribute("data-title", data.lesson.title);
+                        editButton.setAttribute("data-content", data.lesson.content);
+                        editButton.setAttribute("data-videourl", data.lesson.videoURL);
+                        editButton.setAttribute("data-begintime", data.lesson.beginTime ? new Date(data.lesson.beginTime).toISOString().slice(0, 16) : '');
+                        editButton.setAttribute("data-endtime", data.lesson.endTime ? new Date(data.lesson.endTime).toISOString().slice(0, 16) : '');
+                        editButton.innerHTML = '<i class="fas fa-edit"></i> Sửa';
+
+                        // Nút xóa
+                        const deleteButton = document.createElement("button");
+                        deleteButton.className = "btn btn-sm btn-outline-danger delete-lesson";
+                        deleteButton.setAttribute("data-lesson-id", data.lesson.lessonID);
+                        deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i> Xóa';
+
+                        buttonGroup.appendChild(editButton);
+                        buttonGroup.appendChild(deleteButton);
+                        newLesson.appendChild(buttonGroup);
+
+                        // Thêm sự kiện cho nút xóa
+                        deleteButton.addEventListener('click', function() {
+                            if (!confirm("Bạn có chắc muốn xóa bài học này?")) return;
+
+                            fetch(`/Lesson/Delete/${data.lesson.lessonID}`, {
+                                method: "DELETE",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "Accept": "application/json"
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    alert("Xóa bài học thành công!");
+                                    newLesson.remove();
+                                } else {
+                                    alert("Xóa thất bại: " + (data.message || "Lỗi không xác định"));
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Lỗi khi xóa bài học:", error);
+                                alert("Có lỗi xảy ra khi gửi yêu cầu xóa.");
+                            });
+                        });
                     }
 
-                    lessonList.prepend(newLesson); // Add to the top of the list
+                    // Thêm vào cuối danh sách
+                    lessonList.appendChild(newLesson);
 
-                    // Close modal and reset form
+                    // Đóng modal và reset form
                     const modal = bootstrap.Modal.getInstance(document.getElementById('addLessonModal'));
                     modal.hide();
                     form.reset();
 
                     alert("Thêm bài học thành công!");
                 } else {
-                    alert("Có lỗi xảy ra:\n" + (data.errors || "Unknown error"));
+                    alert("Có lỗi xảy ra:\n" + (data.message || "Unknown error"));
+                    if (data.errors) {
+                        console.error(data.errors);
+                    }
                 }
             })
             .catch(error => {
