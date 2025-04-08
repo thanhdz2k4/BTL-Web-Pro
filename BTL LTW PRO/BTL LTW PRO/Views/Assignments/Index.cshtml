@@ -1,6 +1,6 @@
 @model IEnumerable<BTL_LTW_PRO.Models.Assignment>
 @{
-    ViewData["Title"] = "BÀI VẼ NHÀ";
+    ViewData["Title"] = "BÀI Về NHÀ";
     var lessons = ViewBag.Lessons as List<BTL_LTW_PRO.Models.Lesson>;
 }
 
@@ -66,15 +66,7 @@
 <body>
     <h1>@ViewData["Title"]</h1>
 
-    <div class="mb-3">
-        <p><strong>Ngày hết hạn gần nhất:</strong>
-           @(Model.FirstOrDefault() != null ? Model.FirstOrDefault().DueDate.ToString("dd/MM/yyyy HH:mm") : "Chưa có")
-
-        </p>
-        <p><strong>Môn học đầu tiên:</strong>
-            @(Model.FirstOrDefault()?.Lesson?.Title ?? "Chưa có")
-        </p>
-    </div>
+    
 
     <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#createModal">+ Thêm bài tập</button>
 
@@ -85,7 +77,7 @@
             foreach (var assignment in Model)
             {
                 <div class="assignment-item">
-                    <div class="title">Câu @i: @assignment.Title</div>
+                    <div class="title">Đề @i: @assignment.Title</div>
                     <div class="text-muted mt-1">
                         Môn học: @assignment.Lesson?.Title <br />
                         Hạn nộp: @assignment.DueDate.ToString("dd/MM/yyyy HH:mm")
