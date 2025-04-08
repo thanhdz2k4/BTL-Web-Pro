@@ -1,0 +1,61 @@
+@model IEnumerable<BTL_LTW_PRO.Models.Assignment>
+
+@{
+    ViewData["Title"] = "Danh sách bài tập";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model.Any())
+{
+    <div class="list-group">
+        @foreach (var assignment in Model)
+        {
+            <div class="list-group-item mb-3">
+                <h5>@assignment.Title</h5>
+                <p><strong>Môn:</strong> @assignment.Lesson?.Title</p>
+                <p><strong>Hạn nộp:</strong> @assignment.DueDate.ToString("dd/MM/yyyy HH:mm")</p>
+
+                <form class="upload-form" enctype="multipart/form-data">
+                    <input type="hidden" name="assignmentId" value="@assignment.AssignmentID" />
+                    <div class="mb-2">
+                        <input type="file" name="file" accept=".doc,.docx" class="form-control" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">📤 Nộp bài</button>
+                </form>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>Không có bài tập nào.</p>
+}
+@section Scripts {
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('.upload-form').on('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        $.ajax({
+            url: '/Submissions/UploadSubmission',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                if (res.success) {
+                    alert('✅ Nộp bài thành công!');
+                } else {
+                    alert('❌ ' + res.message);
+                }
+            },
+            error: function () {
+                alert('❌ Lỗi khi gửi bài.');
+            }
+        });
+    });
+</script>
+}

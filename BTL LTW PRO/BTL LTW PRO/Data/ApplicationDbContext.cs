@@ -16,6 +16,9 @@ namespace BTL_LTW_PRO.Data
         public DbSet<Assignment> Assignments { get; set; }
         // public DbSet<Submission> Submissions { get; set; }
         public DbSet<Payment> Payments { get; set; }
+
+public DbSet<Submission> Submissions { get; set; }
+
        
     }
 }

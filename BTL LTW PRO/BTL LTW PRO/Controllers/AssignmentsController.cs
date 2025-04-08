@@ -125,5 +125,18 @@ namespace BTL_LTW_PRO.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        //////////
+        public async Task<IActionResult> StudentIndex()
+{
+    var assignments = await _context.Assignments
+        .Include(a => a.Lesson)
+        .ToListAsync();
+
+    return View(assignments);
+}
+
+
+
     }
 }
