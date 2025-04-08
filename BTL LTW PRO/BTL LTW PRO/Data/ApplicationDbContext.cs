@@ -9,7 +9,7 @@ namespace BTL_LTW_PRO.Data
             : base(options) { }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Role> Role { get; set; }
+        public DbSet<Roles> Roles { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }

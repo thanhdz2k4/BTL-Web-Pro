@@ -4,13 +4,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\BTL LTW PRO.gfz5vdci9p.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-nFX7E3Pj6YFYwnagiW4KzNU84uNB/KgK1oZhPSA9lOw="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022nFX7E3Pj6YFYwnagiW4KzNU84uNB/KgK1oZhPSA9lOw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 02 Apr 2025 13:00:36 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022nFX7E3Pj6YFYwnagiW4KzNU84uNB/KgK1oZhPSA9lOw=\u0022"},{"Name":"Last-Modified","Value":"Mon, 07 Apr 2025 16:50:53 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/BTL LTW PRO/BTL LTW PRO.gfz5vdci9p.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\BTL LTW PRO.gfz5vdci9p.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"gfz5vdci9p"},{"Name":"integrity","Value":"sha256-nFX7E3Pj6YFYwnagiW4KzNU84uNB/KgK1oZhPSA9lOw="},{"Name":"label","Value":"_content/BTL LTW PRO/BTL LTW PRO.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022nFX7E3Pj6YFYwnagiW4KzNU84uNB/KgK1oZhPSA9lOw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 02 Apr 2025 13:00:36 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1129"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022nFX7E3Pj6YFYwnagiW4KzNU84uNB/KgK1oZhPSA9lOw=\u0022"},{"Name":"Last-Modified","Value":"Mon, 07 Apr 2025 16:50:53 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/BTL LTW PRO/css/site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>

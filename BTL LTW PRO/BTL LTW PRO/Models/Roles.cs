@@ -2,7 +2,7 @@
 
 namespace BTL_LTW_PRO.Models
 {
-    public class Role
+    public class Roles
     {
         [Key]
         public int RoleID { get; set; }

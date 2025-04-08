@@ -80,15 +80,15 @@ namespace BTL_LTW_PRO.Controllers
                 return View(model);
             }
 
-            var role = await _context.Role.FirstOrDefaultAsync(u => u.RoleID == user.RoleID);
-            if (role == null) {
+            var roles = await _context.Roles.FirstOrDefaultAsync(u => u.RoleID == user.RoleID);
+            if (roles == null) {
                 return View(model);
             }
 
             // Lưu Session
             HttpContext.Session.SetString("UserID", user.UserID.ToString());
             HttpContext.Session.SetString("UserName", user.FullName);
-            HttpContext.Session.SetString("UserRole", role.RoleName);
+            HttpContext.Session.SetString("UserRole", roles.RoleName);
 
             if (user.RoleID == 1) // admin
             {

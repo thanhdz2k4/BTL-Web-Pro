@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BTL_LTW_PRO.Models
 {
@@ -10,14 +10,14 @@ namespace BTL_LTW_PRO.Models
 
         [ForeignKey("Course")]
         public int CourseID { get; set; }
-        public Course Course { get; set; } = new Course();
+        public Course Course { get; set; } // No need to initialize here
 
         [Required]
         [MaxLength(200)]
-        public string Title { get; set; } = "";
+        public string Title { get; set; } = string.Empty;
 
-        public string Content { get; set; } = "";
-        public string VideoURL { get; set; } = "";
+        public string Content { get; set; } = string.Empty;
+        public string VideoURL { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? BeginTime { get; set; }
         public DateTime? EndTime { get; set; }
