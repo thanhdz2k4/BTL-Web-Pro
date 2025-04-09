@@ -24,7 +24,6 @@ namespace BTL_LTW_PRO.Controllers
                 .ToListAsync();
 
             ViewData["UserRole"] = HttpContext.Session.GetString("UserRole");
-            ViewData["Index"] = LessonID;
             ViewBag.Lessons = await _context.Lessons.ToListAsync();
 
             return View(assignments);
