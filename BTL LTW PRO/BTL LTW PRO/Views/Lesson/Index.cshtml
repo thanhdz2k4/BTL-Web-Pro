@@ -5,6 +5,7 @@
     var idCourse = ViewData["idCourse"];
     string userRole = ViewData["UserRole"] as string;
 }
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <!-- Page Title and Add Lesson Button -->
 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -178,7 +179,7 @@
 </style>
 
 <script>
-            document.addEventListener("DOMContentLoaded", function () {
+         document.addEventListener("DOMContentLoaded", function () {
         const form = document.querySelector("#addLessonModal form");
 
         form.addEventListener("submit", function (event) {
@@ -372,39 +373,70 @@
     });
 
 
-    // Xử lý xóa bài học
-           document.addEventListener("DOMContentLoaded", function () {
-        // Bắt sự kiện khi click vào nút xóa
-        document.querySelectorAll(".delete-lesson").forEach(button => {
-            button.addEventListener("click", function () {
-                const lessonId = this.getAttribute("data-lesson-id");
+    @* // Xử lý xóa bài học *@
+    @*        document.addEventListener("DOMContentLoaded", function () { *@
+    @*     // Bắt sự kiện khi click vào nút xóa *@
+    @*     document.querySelectorAll(".delete-lesson").forEach(button => { *@
+    @*         button.addEventListener("click", function () { *@
+    @*             const lessonId = this.getAttribute("data-lesson-id"); *@
 
-                if (!confirm("Bạn có chắc muốn xóa bài học này?")) {
-                    return;
-                }
+    @*             if (!confirm("Bạn có chắc muốn xóa bài học này?")) { *@
+    @*                 return; *@
+    @*             } *@
 
-                fetch(`/Lesson/Delete/${lessonId}`, {  // Đổi đường dẫn phù hợp với route của bạn
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
+    @*             fetch(`/Lesson/Delete/${lessonId}`, {  // Đổi đường dẫn phù hợp với route của bạn *@
+    @*                 method: "DELETE", *@
+    @*                 headers: { *@
+    @*                     "Content-Type": "application/json", *@
+    @*                     "Accept": "application/json" *@
+    @*                 } *@
+    @*             }) *@
+    @*             .then(response => response.json()) *@
+    @*             .then(data => { *@
+    @*                 if (data.success) { *@
+    @*                     alert("Xóa bài học thành công!"); *@
+
+    @*                     // Xóa bài học khỏi giao diện *@
+    @*                     this.closest(".list-group-item").remove(); *@
+    @*                 } else { *@
+    @*                     alert("Xóa thất bại: " + (data.message || "Lỗi không xác định")); *@
+    @*                 } *@
+    @*             }) *@
+    @*             .catch(error => { *@
+    @*                 console.error("Lỗi khi xóa bài học:", error); *@
+    @*                 alert("Có lỗi xảy ra khi gửi yêu cầu xóa."); *@
+    @*             }); *@
+    @*         }); *@
+    @*     }); *@
+    @* }); *@
+
+   
+    $(document).ready(function () {
+        $(".delete-lesson").on("click", function () {
+            const lessonId = $(this).data("lesson-id");
+            const $button = $(this);
+
+            if (!confirm("Bạn có chắc muốn xóa bài học này?")) {
+                return;
+            }
+
+            $.ajax({
+                url: `/Lesson/Delete/${lessonId}`,
+                method: "DELETE",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
                     if (data.success) {
                         alert("Xóa bài học thành công!");
-
-                        // Xóa bài học khỏi giao diện
-                        this.closest(".list-group-item").remove();
+                        $button.closest(".list-group-item").remove();
                     } else {
                         alert("Xóa thất bại: " + (data.message || "Lỗi không xác định"));
                     }
-                })
-                .catch(error => {
+                },
+                error: function (xhr, status, error) {
                     console.error("Lỗi khi xóa bài học:", error);
                     alert("Có lỗi xảy ra khi gửi yêu cầu xóa.");
-                });
+                }
             });
         });
     });
