@@ -17,16 +17,20 @@ namespace BTL_LTW_PRO.Controllers
         }
 
         // GET: Hiển thị danh sách bài tập
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int LessonID)
         {
             var assignments = await _context.Assignments
-                .Include(a => a.Lesson)
+                .Where(p => p.LessonID == LessonID)
                 .ToListAsync();
-            string userRole = HttpContext.Session.GetString("UserRole");
-            ViewData["UserRole"] = userRole;
+
+            ViewData["UserRole"] = HttpContext.Session.GetString("UserRole");
+            ViewData["Index"] = LessonID;
             ViewBag.Lessons = await _context.Lessons.ToListAsync();
+
             return View(assignments);
         }
+
+
 
         // POST: Thêm bài tập bằng AJAX
         [HttpPost]
