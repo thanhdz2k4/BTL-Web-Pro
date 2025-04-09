@@ -22,7 +22,8 @@ namespace BTL_LTW_PRO.Controllers
             var assignments = await _context.Assignments
                 .Include(a => a.Lesson)
                 .ToListAsync();
-
+            string userRole = HttpContext.Session.GetString("UserRole");
+            ViewData["UserRole"] = userRole;
             ViewBag.Lessons = await _context.Lessons.ToListAsync();
             return View(assignments);
         }

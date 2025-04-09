@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "BÀI Về NHÀ";
     var lessons = ViewBag.Lessons as List<BTL_LTW_PRO.Models.Lesson>;
+    string userRole = ViewData["UserRole"] as string;
 }
 
 <!DOCTYPE html>
@@ -67,8 +68,11 @@
     <h1>@ViewData["Title"]</h1>
 
     
-
-    <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#createModal">+ Thêm bài tập</button>
+    @if (userRole == "Teacher")
+    {
+        <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#createModal">+ Thêm bài tập</button>
+    }
+    
 
     <div class="assignment-list">
         @if (Model.Any())
@@ -83,9 +87,13 @@
                         Hạn nộp: @assignment.DueDate.ToString("dd/MM/yyyy HH:mm")
                     </div>
                     <div class="mt-2">
+                        @if (userRole == "Teacher")
+                        {
                         <a asp-action="Edit" asp-route-id="@assignment.AssignmentID" class="btn btn-edit me-2">Sửa</a>
                         <a asp-action="Delete" asp-route-id="@assignment.AssignmentID" class="btn btn-delete"
-                           onclick="return confirm('Bạn có chắc chắn muốn xóa bài tập này?')">Xóa</a>
+                               onclick="return confirm('Bạn có chắc chắn muốn xóa bài tập này?')">Xóa</a>
+                        }
+                          
                     </div>
                 </div>
                 i++;
