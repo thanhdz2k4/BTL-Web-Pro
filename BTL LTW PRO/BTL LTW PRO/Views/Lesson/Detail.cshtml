@@ -33,7 +33,7 @@
 
             @if (Model.BeginTime <= DateTime.Now && DateTime.Now <= Model.EndTime)
             {
-                <button class="btn btn-primary">Tham gia</button>
+                <a class="btn btn-primary" href="@Model.VideoURL" target="_blank" rel="noopener noreferrer">Tham gia</a>
             }
             else
             {
